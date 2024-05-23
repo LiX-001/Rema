@@ -4,9 +4,9 @@ const introImage = document.querySelector('.intro-image');
 const introText = document.querySelector('.intro-text');
 
 function switchToMainPage() {
- console.log('Nevigating to \'http://127.0.0.1:5000/rema\'');
+ console.log('Nevigating to \'http://lix.pythonanywhere.com/rema\'');
   setTimeout(() => {
-    window.location.href = 'http://127.0.0.1:5000/rema';
+    window.location.href = 'http://lix.pythonanywhere.com/rema';
   }, 5000); 
 };
 
