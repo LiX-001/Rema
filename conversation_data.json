@@ -1,0 +1,177 @@
+{
+    "sentiments": {
+      "doleful": [
+        "I'm so sorry to hear that.",
+        "I feel bad about that.",
+        "That's unfortunate.",
+        "I'm sorry about that.",
+        "That's so unfortunate.",
+        "I feel bad to hear that."
+      ],
+      "negative": [
+        "I'm sorry about that.",
+        "Sorry to hear that.",
+        "Oh! That's unfortunate.",
+        "I feel sorry for that."
+      ],
+      "neutral": [
+        "I see.",
+        "Got you.",
+        "I get it.",
+        "Ah.",
+        "Oh, I see."
+      ],
+      "positive": [
+        "That's good.",
+        "That's nice.",
+        "That's fascinating.",
+        "That's reassuring."
+      ],
+      "exclamatory": [
+        "Glad to learn that!",
+        "I'm glad to hear that!",
+        "That's fascinating!",
+        "Fantastic!",
+        "Wow! So nice to hear that.",
+        "Awesome!"
+      ]
+    },
+    "error-handling": {
+    "search": {
+        "inability": [
+            "don't",
+            "do not",
+            "think I don't",
+            "don't think I"
+        ],
+        "verbs": [
+            "have an information",
+            "know something",
+            "have any knowledge",
+            "know a thing"
+        ],
+        "connectors": [
+            "about",
+            "related to",
+            "relevant to",
+            "relating to" 
+        ],
+        "indicators": [
+            "that",
+            "it",
+            "the query",
+            "$QUERY"
+        ]
+    },
+    "solve": {
+      "inability": [
+          "couldn't",
+          "could not",
+          "am unable to",
+          "was unable to",
+          "wasn't able to",
+          "was not able to"
+      ],
+      "verbs": [
+          "solve for",
+          "find a solution to",
+          "solve",
+          "figure out the solution to",
+          "find the answer to"
+      ],
+      "indicators": [
+          "that",
+          "it",
+          "the problem",
+          "that problem",
+          "$QUERY"
+      ]
+      }
+    },
+    "informations": {
+        "abilities" : [
+            "informations",
+            "solutions",
+            "mathematics",
+            "code help",
+            "programming"
+        ],
+        "is" : [
+           "Rema",
+           "a bot",
+           "Artificial Intelligence",
+           "AI"
+        ],
+        "name" : "Rema",
+        "location" : [
+            "computer",
+            "device"
+        ],
+        "creator" : "LiX"
+    },
+    "patterns": [
+    {
+        "tag":"greetings",
+        "input_patterns": ["hi", "hello", "hey"],
+        "output_patterns": [
+            "$GREETING"
+        ]
+    },
+    {
+        "tag":"name",
+        "input_patterns": ["your name?", "whats your name?"],
+        "output_patterns": [
+            "$PREFIX-A $NAME"
+        ]
+    },
+    {
+        "tag":"formality",
+        "input_patterns": ["how are you", "wassup", "whats up"],
+        "output_patterns": [
+            "$FP_SUBJECT+VERB $CONDITION$OPTIONAL_FORMALITY"
+        ]
+    },
+    {
+        "tag":"introduction",
+        "input_patterns": ["who are you", "who is rema", "what are you", "what is rema"],
+        "output_patterns": [
+            "I am $IS"
+        ]
+    },
+    {
+        "tag":"creator",
+        "input_patterns": ["who made you", "who created you", "how were you made", "who is your creator"],
+        "output_patterns": [
+            "$PREFIX-B $MID by $CREATOR $OPTIONAL_LANG"
+        ]
+    },
+    {
+        "tag":"location",
+        "input_patterns": ["where are you", "where do you live"],
+        "output_patterns": [
+            "$PREFIX-C $MID $JOINER $LOCATION"
+        ]
+    },
+    {
+        "tag":"joke",
+        "input_patterns": ["tell me a joke", "tell me something funny", "tell me a funny joke"],
+        "output_patterns": [
+            "$JOKE"
+        ]
+    },
+    {
+        "tag":"facts",
+        "input_patterns": ["tell me a fun fact", "tell me a random fact", "tell me a fact"],
+        "output_patterns": [
+            "$FACT"
+        ]
+    },
+    {
+        "tag":"farewell",
+        "input_patterns": ["bye", "goodbye"],
+        "output_patterns": [
+            "$FAREWELL"
+        ]
+    }
+    ]
+  }

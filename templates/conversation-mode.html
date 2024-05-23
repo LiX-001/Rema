@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rema - Conversation Mode</title>
+    <style>
+        .message-container {
+            color: white;
+            position: fixed;
+            height: 88%;
+            width: 80%;
+            overflow-y: auto;
+            border: 1px solid #18161663;
+            padding: 10px;
+        }
+        .input {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 80.8%;
+            padding: 10px;
+            background-color: #18161663;
+        }
+        #input-text {
+            color: white;
+            width: 92%;
+            padding: 5px;
+            border: 1px solid rgb(129, 0, 250);
+            border-radius: 10px;
+            border-width: 2px;
+            margin-right: 5px;
+            background-color: rgba(53, 51, 51, 0.295);
+        }
+        #submit-btn {
+            padding: 5px 10px;
+            background-color: rgb(129, 0, 250);
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body bgcolor="black">
+    <div class="message-container" id="message-container">
+    </div>
+    <div class="input">
+        <input type="text" id="input-text" placeholder="Input Rema...">
+        <button id="submit-btn">Send</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var submitBtn = document.getElementById('submit-btn');
+            submitBtn.addEventListener('click', function() {
+                var userInput = document.getElementById('input-text').value;
+                displayMessage(userInput);
+                sendMessage(userInput);
+                userInput.value = ""
+            });
+            var inputText = document.getElementById("input-text");
+            inputText.addEventListener("keypress", function(event) {
+                if (event.keyCode === 13) {
+                    var userInput = document.getElementById('input-text').value;
+                    displayMessage(userInput);
+                    sendMessage(userInput);
+                    userInput.value = "";
+                }
+            });
+
+            function sendMessage(userInput) {
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/conversation', true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        displayReply(response.output);
+                    }
+                };
+                xhr.send('user_input=' + encodeURIComponent(userInput));
+            }
+
+            function displayMessage(userInput) {
+                var messageContainer = document.getElementById('message-container');
+                var userDiv = document.createElement('div');
+                var username = document.createElement('p');
+                username.textContent = "You";
+                username.style.fontWeight = 'bold';
+                var userquery = document.createElement('p');
+                userquery.textContent = userInput;
+                userDiv.appendChild(username);
+                userDiv.appendChild(userquery);
+                messageContainer.appendChild(userDiv);
+            }
+            function displayReply(remaResponse) {
+                var messageContainer = document.getElementById('message-container');
+                var remaDiv = document.createElement('div');
+                var rema = document.createElement('p');
+                rema.textContent = "Rema";
+                rema.style.fontWeight = 'bold';
+                var reply = document.createElement('p');
+                reply.textContent = remaResponse;
+                remaDiv.appendChild(rema);
+                remaDiv.appendChild(reply);
+                var reply = document.createElement('p');
+                reply.textContent = remaResponse;
+                messageContainer.appendChild(remaDiv);
+                messageContainer.scrollTop = messageContainer.scrollHeight;
+            }
+        });
+    </script>
+</body>
+</html>
